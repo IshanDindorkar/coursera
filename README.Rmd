@@ -1,0 +1,5 @@
+Getting & Cleaning Data - Course Project
+========================================================
+
+R Script file - run_analysis.R
+Codebook - Code Book.xlsx
