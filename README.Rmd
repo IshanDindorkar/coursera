@@ -2,4 +2,20 @@ Getting & Cleaning Data - Course Project
 ========================================================
 
 R Script file - run_analysis.R
+
+The script file contains code snippet for following steps -
+
+1. Read Training & Test datasets into R.
+2. Read features data into R and set its values as column names of Training & Test datasets.
+3. Read subject's test and training dataset into R.
+4. Read activities data for Training & Test dataset into R.
+5. Replace activities with meaningful labels as per activity_labels dataset.
+6. Merged Training dataset with corresponding Activities data. Similarly did merging for Test data
+7. Merged Training dataset with Subjects data and did same for test dataset.
+8. Merged resultant Training & Test datasets obtained from steps 6 & 7.
+9. Extracted columns that contained mean and standard deviation values for different variables.
+10. Merged Acitvities & Subject data with the mean & standard deviation columns of observations.
+11. With the help of aggregate function, grouped values of mean and standard deviation according to subjects and activities.
+
 Codebook - Code Book.xlsx
+It contains list of all variables, corresponding length & explanation of individual variables.
