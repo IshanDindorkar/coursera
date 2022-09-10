@@ -11,6 +11,11 @@ from loguru import logger
 
 
 def main(num_elem: int):
+    assert 0 <= num_elem <= 45
+    print(get_element_from_fibonacci_series_eff_algo(num_elem=num_elem + 1))
+
+
+def evaluate_algorithms(num_elem: int):
     start_time = time.time()
     result = get_element_from_fibonacci_series_eff_algo(num_elem=num_elem)
     end_time = time.time()

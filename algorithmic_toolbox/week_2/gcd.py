@@ -10,6 +10,12 @@ from loguru import logger
 
 
 def main(num_a: int, num_b: int):
+    assert num_a >= 1
+    assert num_b <= 2 * (10 ** 9)
+    print(calculate_gcd_euclidean_algo(num_a=num_a, num_b=num_b))
+
+
+def evaluate_algorithms(num_a: int, num_b: int):
     # GCD calculation using Euclidean algorithm (efficient)
     start_time = time.time()
     logger.info(calculate_gcd_euclidean_algo(num_a=num_a, num_b=num_b))
