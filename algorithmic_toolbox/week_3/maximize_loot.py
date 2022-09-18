@@ -1,51 +1,42 @@
-# Created by Ishan Dindorkar on 14/09/22
+# Created by Ishan Dindorkar on 18/09/22
 # Email: Ishan.Dindorkar@yahoo.com
 """
-Design greedy algorithm to maximize the loot value
+Implementation of knapsack algorithm calculate maximum loot value
 """
 from typing import List
 
 
-def main(capacity: int, compound_weights: List, compound_costs: List):
-    print(maximize_loot(capacity=capacity, compound_weights=compound_weights, compound_costs=compound_costs))
+def main(capacity: int, cost_weight_list: List):
+    value = maximize_loot(capacity=capacity, cost_weight_list=cost_weight_list)
+    print("{:.10f}".format(value))
 
 
-def maximize_loot(capacity: int, compound_weights: List, compound_costs: List):
-    if capacity == 0 or len(compound_weights) == 0:
-        return 0
+def maximize_loot(capacity: int, cost_weight_list: List):
+    cost_weight_list.sort(key=lambda x: (x[0] / x[1]), reverse=True)  # sort the array in the decreasing order of cost is to weight ratio
+    value = 0
+    for (cost, weight) in cost_weight_list:
+        if capacity == 0:
+            break
+        if weight <= capacity:
+            value += cost
+            capacity -= weight
+        else:
+            value += float(capacity / weight) * cost
+            break
 
-    # 1. find the most expensive compound
-    m = find_most_expensive_compound(compound_costs=compound_costs)
-
-    # 2. find optimum value for "a"
-    a = min(compound_weights[m], capacity)
-
-    # 3. maximize value using most expensive compound
-    val_most_exp_comp = int((compound_costs[m] * compound_weights[m]) * (a / compound_weights[m]))
-    capacity -= compound_weights[m] * (a / compound_weights[m])
-
-    # 4. delete elements corresponding to most expensive compound from weight and cost arrays
-    del compound_weights[m]
-    del compound_costs[m]
-
-    return val_most_exp_comp + maximize_loot(capacity=capacity, compound_weights=compound_weights,
-                                             compound_costs=compound_costs)
-
-
-def find_most_expensive_compound(compound_costs: List):
-    max_value = 0
-    idx_most_exp_comp = 0
-    for idx, cost in enumerate(compound_costs):
-        if cost > max_value:
-            max_value = cost
-            idx_most_exp_comp = idx
-
-    return idx_most_exp_comp
+    return value
 
 
 if __name__ == "__main__":
-    capacity = int(input())
-    compound_weights = list(map(int, input().split()))
-    compound_costs = list(map(int, input().split()))
+    num_compounds, capacity = map(int, input().split())
+    assert 1 <= num_compounds <= 1000
+    assert 0 <= capacity <= 2*10**6
 
-    main(capacity=capacity, compound_weights=compound_weights, compound_costs=compound_costs)
+    cost_weight_list = list()
+    for idx in range(num_compounds):
+        cost, weight = map(int, input().split())
+        assert 0 <= cost <= 2 * 10 ** 6
+        assert 0 <= weight <= 2 * 10 ** 6
+        cost_weight_list.append((cost, weight))
+
+    main(capacity=capacity, cost_weight_list=cost_weight_list)

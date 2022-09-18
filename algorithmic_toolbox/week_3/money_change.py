@@ -8,7 +8,7 @@ amount
 from typing import List
 
 
-def main(input_amount: int, denominations: List):
+def main(input_amount: int, denominations=None):
     print(change(input_amount=input_amount, coins=0, denominations=denominations))
 
 
@@ -30,5 +30,7 @@ def change(input_amount: int, coins: int, denominations=None):
 
 if __name__ == "__main__":
     input_amount = int(input())
-    denominations = list(map(int, input().split()))
-    main(input_amount=input_amount, denominations=denominations)
+    assert 1 <= input_amount <= 1000
+
+    main(input_amount=input_amount)
+
