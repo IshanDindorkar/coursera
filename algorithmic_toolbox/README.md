@@ -21,4 +21,6 @@ https://www.coursera.org/specializations/data-structures-algorithms
   * Maximize loot value
   * Minimum number of refills
   * Money change with minimum coins
+  * Collect signatures
+  * Maximum advertisement revenue
   
